@@ -1,10 +1,237 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Site de service</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QuickPic | Photographie & Vidéographie de mariage</title>
+
+  <!-- Polices Google (Playfair Display pour les titres, Inter pour le texte) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Icons via CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Feuille de style personnalisée -->
+  <link href="style.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Site de service</h1>
-    <p>Ce projet présentera un site web conçu pour une entreprise de services. L’objectif sera de créer une interface claire, professionnelle et facile à naviguer.</p>
+
+  <!-- En-tête: barre de navigation flottante -->
+  <header class="navbar">
+    <a class="brand" data-nav="accueil">QuickPic</a>
+
+    <!-- Bouton menu pour l'affichage mobile -->
+    <button class="nav-toggle" id="nav-toggle" aria-label="Ouvrir le menu">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <nav class="nav-links" id="nav-links" aria-label="Navigation principale">
+      <a data-nav="accueil" class="active">Accueil</a>
+      <a data-nav="forfaits">Forfaits</a>
+      <a data-nav="galerie">Galerie</a>
+      <a data-nav="apropos">A propos</a>
+      <a data-nav="contact">Contact</a>
+      <a data-nav="contact" class="btn-reserver">Reserver</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Vue 1: Accueil / Hero -->
+    <section id="accueil" class="view active">
+      <div class="hero">
+        <div class="hero-text">
+          <h1>Des souvenirs<br>qui durent<br>pour toujours</h1>
+          <p>
+            Séances photo et vidéo de mariage et de fiançailles,
+            remplies d'émotion et d'authenticité.
+          </p>
+          <button class="btn-gold" data-nav="forfaits">Voir Les Forfaits</button>
+        </div>
+        <div class="hero-image">
+          <img src="images/accuiel.jpg" alt="Couple de fiancés enlacés en automne">
+        </div>
+      </div>
+    </section>
+
+    <!-- Vue 2: Forfaits -->
+    <section id="forfaits" class="view">
+      <h2 class="view-title">Veuillez trouver ci-dessous nos forfaits</h2>
+
+      <div class="forfaits-grid">
+        <!-- Forfait Classique -->
+        <article class="forfait-card">
+          <h3>Classique</h3>
+          <p class="prix">299$</p>
+          <ul>
+            <li>1 heure de séance</li>
+            <li>25 photos retouchées</li>
+            <li>Galerie en ligne</li>
+          </ul>
+          <button class="btn-gold" data-forfait="Forfait Classique (Photo)">Choisir</button>
+        </article>
+
+        <!-- Forfait Premium -->
+        <article class="forfait-card">
+          <h3>Premium</h3>
+          <p class="prix">399$</p>
+          <ul>
+            <li>1 heure de tournage</li>
+            <li>Montage professionnel</li>
+            <li>Vidéo HD</li>
+          </ul>
+          <button class="btn-gold" data-forfait="Forfait Premium (Vidéo)">Choisir</button>
+        </article>
+
+        <!-- Forfait Ultra -->
+        <article class="forfait-card">
+          <h3>Ultra</h3>
+          <p class="prix">499$</p>
+          <ul>
+            <li>Photos + vidéo</li>
+            <li>Retouches incluses</li>
+            <li>Galerie complète</li>
+          </ul>
+          <button class="btn-gold" data-forfait="Forfait Ultra (Photo + Vidéo)">Choisir</button>
+        </article>
+      </div>
+
+      <p class="forfaits-note">Tous nos forfaits peuvent être personnalisés selon vos besoins.</p>
+    </section>
+
+    <!-- Vue 3: Galerie -->
+    <section id="galerie" class="view">
+      <h2 class="view-title">Notre galerie</h2>
+      <p class="view-subtitle">Un aperçu des moments que nous avons immortalisés.</p>
+
+      <!-- Les images sont injectées par script.js puis ouvrables dans la visionneuse -->
+      <div class="galerie-grid" id="galerie-grid"></div>
+    </section>
+
+    <!-- Vue 4: À propos -->
+    <section id="apropos" class="view">
+      <h2 class="view-title">À propos de QuickPic</h2>
+
+      <div class="apropos-grid">
+        <div class="apropos-text">
+          <p>
+            <strong>QuickPic</strong> est une entreprise de photographie et de vidéographie
+            spécialisée dans les mariages, les fiançailles et les événements importants.
+          </p>
+          <p>
+            Notre mission est simple: vous permettre de conserver des souvenirs durables
+            de vos moments les plus précieux. Consultez nos forfaits, explorez notre galerie
+            et envoyez-nous une demande de réservation en quelques clics.
+          </p>
+
+          <ul class="coordonnees">
+            <li><i class="bi bi-geo-alt-fill"></i> 100 Louis-Pasteur Private, Ottawa, ON</li>
+            <li><i class="bi bi-telephone-fill"></i> (613) 000-0000</li>
+            <li><i class="bi bi-envelope-fill"></i> email@quickpic.ca</li>
+            <li><i class="bi bi-clock-fill"></i> Lundi au samedi, 9h à 18h</li>
+          </ul>
+        </div>
+
+        <div class="apropos-image">
+          <img src="images/pexels-san-wedding-1649543-6291011.jpg" alt="Mariés lors d'une séance photo">
+        </div>
+      </div>
+    </section>
+
+    <!-- Vue 5: Contact -->
+    <section id="contact" class="view">
+      <div class="contact-grid">
+        <div class="contact-left">
+          <h2>Parlez-nous de<br>votre projet</h2>
+          <p>Remplissez le formulaire ci-dessous et nous vous répondrons sous peu.</p>
+          <div class="contact-image">
+            <img src="images/pexels-newman-photographs-234743505-29891256.jpg" alt="Couple de fiancés souriant">
+          </div>
+        </div>
+
+        <!-- Formulaire de demande de réservation -->
+        <form class="contact-form" id="contact-form">
+          <label for="nom">Nom Complet</label>
+          <input type="text" id="nom" placeholder="Votre Nom" required>
+
+          <label for="courriel">Courriel</label>
+          <input type="email" id="courriel" placeholder="Votre@email.com" required>
+
+          <label for="forfait">Forfait</label>
+          <select id="forfait" required>
+            <option value="" disabled selected>Choisissez un forfait</option>
+            <option value="Forfait Classique (Photo)">Forfait Classique (Photo)</option>
+            <option value="Forfait Premium (Vidéo)">Forfait Premium (Vidéo)</option>
+            <option value="Forfait Ultra (Photo + Vidéo)">Forfait Ultra (Photo + Vidéo)</option>
+          </select>
+
+          <div class="form-row">
+            <div>
+              <label for="date">Date</label>
+              <input type="date" id="date" required>
+            </div>
+            <div>
+              <label for="heure">Heure</label>
+              <input type="time" id="heure" required>
+            </div>
+          </div>
+
+          <label for="message">Message</label>
+          <textarea id="message" rows="3" placeholder="Dites-nous en plus sur votre projet..."></textarea>
+
+          <button type="submit" class="btn-gold">Envoyer Ma Demande</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Vue 6: Confirmation (Demande envoyée avec succès) -->
+    <section id="confirmation" class="view">
+      <div class="confirmation-grid">
+        <div class="confirmation-text">
+          <h2>Demande Envoyée<br>Avec Succès</h2>
+          <p>
+            Nous avons bien reçu votre demande de réservation. Nous vous contacterons
+            sous peu pour confirmer les détails de votre événement.
+          </p>
+
+          <!-- Résumé rempli dynamiquement par script.js -->
+          <div class="resume-card">
+            <h3>Résumé de votre demande</h3>
+            <div class="resume-ligne"><span>Forfait</span><strong id="r-forfait">—</strong></div>
+            <div class="resume-ligne"><span>Date</span><strong id="r-date">—</strong></div>
+            <div class="resume-ligne"><span>Heure</span><strong id="r-heure">—</strong></div>
+          </div>
+
+          <button class="btn-gold" data-nav="accueil">Retour à l'accueil</button>
+        </div>
+
+        <div class="confirmation-image">
+          <img src="images/groom-bride-together-are-holding-wedding-pink-bouquet.jpg" alt="Mariés tenant un bouquet rose">
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Pied de page: coordonnées et crédit du concepteur -->
+  <footer class="site-footer">
+    <div class="footer-brand">QuickPic</div>
+    <p class="footer-coord">
+      250, avenue King Edward, Ottawa (ON) &nbsp;·&nbsp; (613) 000-0000 &nbsp;·&nbsp; email@quickpic.ca
+    </p>
+    <p class="footer-credit">
+      <a href="../../index.html">Marven Monalliance</a> — SEG3525
+    </p>
+  </footer>
+
+  <!-- Visionneuse d'images pour la galerie -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightbox-close"><i class="bi bi-x-lg"></i></span>
+    <img id="lightbox-img" src="" alt="Image agrandie">
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
