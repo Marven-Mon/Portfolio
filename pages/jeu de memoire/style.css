@@ -1,0 +1,216 @@
+/* ===== Variables de thème: palette claire (par défaut) ===== */
+:root,
+[data-theme="light"] {
+  --bg:        #F8F5F0;
+  --text:      #1E2328;
+  --card:      #E9DFD0;
+  --accent:    #2B87D1;
+  --on-accent: #FFFFFF;
+  --muted:     rgba(30, 35, 40, .55);
+  --border:    rgba(30, 35, 40, .14);
+  --track:     rgba(30, 35, 40, .12);
+}
+
+/* ===== Palette sombre ===== */
+[data-theme="dark"] {
+  --bg:        #071013;
+  --text:      #FFFFFF;
+  --card:      #0E1B22;
+  --accent:    #55F1F1;
+  --on-accent: #071013;
+  --muted:     #6B7380;
+  --border:    rgba(107, 115, 128, .35);
+  --track:     rgba(107, 115, 128, .30);
+}
+
+/* ===== Base ===== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  transition: background .3s, color .3s;
+}
+
+#root { width: 100%; display: flex; justify-content: center; }
+
+/* ===== Écran: le cadre central de chaque vue ===== */
+.screen {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 40px 34px;
+  box-shadow: 0 20px 55px rgba(0, 0, 0, .14);
+  animation: fade .35s ease;
+}
+@keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* ===== Logo ===== */
+.logo { font-size: 2.6rem; font-weight: 800; letter-spacing: -1px; text-align: center; }
+.logo-sm { font-size: 1.7rem; }
+
+/* ===== Menu principal ===== */
+.menu { text-align: center; padding: 64px 34px; }
+.menu .logo { margin-bottom: 36px; }
+.btn-play { font-size: 1.05rem; padding: 14px 48px; }
+
+.theme-toggle {
+  position: absolute;
+  top: 18px; right: 18px;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.theme-toggle:hover { background: var(--accent); color: var(--on-accent); }
+
+/* ===== Configuration ===== */
+.subtitle { text-align: center; color: var(--muted); margin: 6px 0 26px; }
+.group-label {
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  margin: 0 0 12px;
+}
+.options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 26px; }
+
+.option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 8px;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  color: var(--text);
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color .2s, transform .12s;
+}
+.option:hover { transform: translateY(-2px); }
+.option.selected { border-color: var(--accent); }
+.opt-title { font-weight: 600; font-size: .95rem; }
+.opt-big   { font-weight: 700; font-size: 1.25rem; }
+.opt-sub   { font-size: .72rem; color: var(--muted); text-align: center; }
+.opt-stars { color: var(--accent); font-size: .8rem; }
+
+/* ===== Boutons ===== */
+.btn-primary {
+  display: block;
+  width: 100%;
+  background: var(--accent);
+  color: var(--on-accent);
+  border: none;
+  border-radius: 12px;
+  padding: 13px 26px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: .98rem;
+  cursor: pointer;
+  transition: filter .2s, transform .12s;
+}
+.btn-primary:hover { filter: brightness(1.05); transform: translateY(-1px); }
+.btn-primary:disabled { opacity: .6; cursor: default; transform: none; }
+.btn-ghost {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 13px 26px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ===== Jeu: bandeau d'état ===== */
+.hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  font-size: .85rem;
+}
+.hud-tag strong { color: var(--accent); }
+.hud-hearts { color: var(--accent); font-size: 1.05rem; letter-spacing: 3px; }
+
+/* ===== Jeu: séquence et minuteur ===== */
+.game-title { text-align: center; font-size: 1.45rem; font-weight: 700; margin-bottom: 22px; }
+.sequence {
+  display: flex;
+  justify-content: center;
+  gap: clamp(10px, 4vw, 26px);
+  margin-bottom: 18px;
+  min-height: 64px;
+}
+.seq-char { font-size: clamp(2.2rem, 9vw, 3.4rem); font-weight: 800; letter-spacing: 1px; }
+
+.timer-bar { height: 6px; background: var(--track); border-radius: 99px; overflow: hidden; }
+.timer-fill { height: 100%; width: 100%; background: var(--accent); animation: shrink 5s linear forwards; }
+@keyframes shrink { from { width: 100%; } to { width: 0; } }
+
+/* ===== Jeu: réponse ===== */
+.answer-block { min-height: 100px; }
+.answer-label { text-align: center; color: var(--muted); margin: 0 0 14px; font-size: .9rem; }
+.answer { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+.answer-box {
+  width: 44px; height: 56px;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid var(--border);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+}
+.answer-box:focus { outline: none; border-bottom-color: var(--accent); }
+.answer-box.is-correct { border-bottom-color: var(--accent); }
+.answer-box.is-wrong   { border-bottom-color: #E05252; }
+
+/* ===== Résultat ===== */
+.result { text-align: center; }
+.result-title { font-size: 1.7rem; font-weight: 800; margin-bottom: 24px; }
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 4px;
+  border-bottom: 1px solid var(--border);
+  font-size: .9rem;
+}
+.result-row span { color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-size: .78rem; }
+.result-row strong { color: var(--accent); font-size: 1rem; }
+.result-msg { margin: 20px 0 26px; font-weight: 600; }
+.result-actions { display: flex; gap: 12px; }
+.result-actions .btn-primary, .result-actions .btn-ghost { width: 100%; }
+
+/* ===== Lien de retour ===== */
+.back-link {
+  position: fixed;
+  bottom: 18px; left: 22px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: .85rem;
+}
+.back-link:hover { color: var(--accent); }
+
+/* ===== Petits écrans ===== */
+@media (max-width: 460px) {
+  .options { grid-template-columns: 1fr; }
+  .screen { padding: 30px 22px; }
+}
