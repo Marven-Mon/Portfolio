@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BuildABox | Pièces d'ordinateur</title>
+
+  <!-- Police Google (Inter pour tout le texte) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Icons via CDN (panier, composantes, étoiles, navigation) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Feuille de style personnalisée -->
+  <link href="style.css" rel="stylesheet">
+
+  <!-- React, ReactDOM et Babel via CDN (aucun npm, aucune compilation locale) -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+</head>
+<body>
+  <!-- React injecte toute l'application ici -->
+  <div id="root"></div>
+
+  <!-- Le composant React est écrit en JSX dans app.jsx; Babel le compile dans le navigateur -->
+  <script type="text/babel" src="app.jsx"></script>
+</body>
+</html>
