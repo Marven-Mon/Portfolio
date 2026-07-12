@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr" id="html-root" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Influx | Tableau de bord boursier</title>
+
+  <!-- Polices Google (Inter pour le texte, JetBrains Mono pour les chiffres/tickers) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Feuille de style personnalisée -->
+  <link href="style.css" rel="stylesheet">
+
+  <!-- React, ReactDOM et Babel via CDN (aucun npm, aucune compilation locale) -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+
+  <!-- Chart.js via CDN (rendu des graphiques linéaire et à barres) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <!-- React injecte tout le tableau de bord ici -->
+  <div id="root"></div>
+
+  <!-- Le composant React est écrit en JSX dans app.jsx; Babel le compile dans le navigateur -->
+  <script type="text/babel" src="app.jsx"></script>
+</body>
+</html>
