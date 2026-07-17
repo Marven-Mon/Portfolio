@@ -4,7 +4,7 @@
   --surface: #1E2328;
   --accent: #55F1F1;
   --text: #FFFFFF;
-  --text-secondary: #6B7380;
+  --text-secondary: #9BA5B3;
   --glass-bg: rgba(30, 35, 40, 0.45);
   --glass-border: rgba(255, 255, 255, 0.08);
   --card-bg: rgba(30, 35, 40, 0.55);
@@ -192,9 +192,13 @@ body {
   .live-time { right: 80px; top: 22px; }
 }
 
-/* Sections génériques */
+/* Sections génériques — chaque section occupe tout l'écran et centre son contenu */
 .section {
-  padding: 100px 120px 100px 8%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px max(6vw, 40px);
   position: relative;
 }
 
@@ -216,7 +220,7 @@ body {
 /* À propos de moi */
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.15fr 0.85fr;
   gap: 60px;
   align-items: center;
   max-width: 1100px;
@@ -229,12 +233,23 @@ body {
   margin-bottom: 1rem;
 }
 
+.about-img-wrap {
+  display: flex;
+  justify-content: center;
+}
+
 .about-img {
   width: 100%;
+  max-width: 360px;
   border-radius: 24px;
   border: 1px solid var(--glass-border);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
   display: block;
+}
+
+/* Adoucit l'image en mode sombre pour qu'elle ne soit pas trop éclatante */
+[data-theme="dark"] .about-img {
+  filter: brightness(0.9) contrast(1.02);
 }
 
 .social-links {
@@ -298,12 +313,12 @@ body {
   color: var(--text-secondary);
 }
 
-/* Projets à venir avec effets de survol */
+/* Projets à venir — cartes façon « vignette + tags » */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  max-width: 1200px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -311,60 +326,76 @@ body {
   background: var(--card-bg);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
-  padding: 40px 24px;
-  text-align: center;
   text-decoration: none;
   color: var(--text);
   backdrop-filter: blur(10px);
   display: block;
-  position: relative;
   overflow: hidden;
   transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
-.project-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(85, 241, 241, 0.15), transparent 70%);
-  opacity: 0;
-  transition: opacity 0.35s ease;
+/* Vignette du haut : l'image inline (background-image) recouvre le dégradé */
+.project-thumb {
+  aspect-ratio: 16 / 10;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--surface);
+  background-image: linear-gradient(135deg, rgba(85,241,241,0.18), rgba(7,16,19,0.35));
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.project-card i {
-  font-size: 2.5rem;
+/* Les images sont présentes : on masque l'icône pour un rendu épuré */
+.project-thumb i { display: none; }
+
+.project-body {
+  padding: 26px 28px 30px;
+}
+
+.project-label {
+  display: block;
   color: var(--accent);
-  margin-bottom: 18px;
-  display: inline-block;
-  transition: transform 0.35s ease;
-  position: relative;
-  z-index: 1;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
-.project-card h3 {
-  font-weight: 600;
-  font-size: 1.15rem;
-  margin-bottom: 8px;
-  position: relative;
-  z-index: 1;
+.project-body h3 {
+  font-weight: 700;
+  font-size: 1.45rem;
+  margin-bottom: 10px;
 }
 
-.project-card p {
+.project-desc {
   color: var(--text-secondary);
-  font-size: 0.9rem;
-  position: relative;
-  z-index: 1;
+  font-size: 0.98rem;
+  margin-bottom: 20px;
 }
 
-/* effet carte qui se soulève + lueur + icône qui grossit */
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.project-tag {
+  background: rgba(85, 241, 241, 0.12);
+  color: var(--accent);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+/* Survol : la carte se soulève + bordure accent + lueur */
 .project-card:hover {
   transform: translateY(-10px);
   border-color: var(--accent);
   box-shadow: 0 20px 40px rgba(85, 241, 241, 0.18);
 }
-
-.project-card:hover::before { opacity: 1; }
-.project-card:hover i { transform: scale(1.15); }
 
 /* Footer */
 .footer {
@@ -377,15 +408,14 @@ body {
 
 /* Responsive (tablettes et mobiles) */
 @media (max-width: 992px) {
-  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  .projects-grid { grid-template-columns: 1fr; }
   .workflow-grid { grid-template-columns: 1fr; }
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
 }
 
 @media (max-width: 600px) {
   .hero { padding: 0 80px 0 6%; }
-  .section { padding: 80px 80px 80px 6%; }
-  .projects-grid { grid-template-columns: 1fr; }
+  .section { padding: 60px 24px; }
   .nav-vertical {
     right: 12px;
     padding: 12px 8px;
